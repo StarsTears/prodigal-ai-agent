@@ -1,0 +1,32 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: spring-ai-agent
+  profiles:
+    active: local
+  ai:
+    dashscope:
+      api-key: XXXXX
+      chat:
+        options:
+          model: qwen-plus
+# springdoc-openapi
+springdoc:
+  swagger-u1:
+    path: /swagger-ui.html
+    tags-sorter:  alpha
+    operations-sorter:  alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    group:  'default'
+    paths-to-match: '/**'
+    packages-to-scan: com.prodigal.aiagent.controller
+# knife4j
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
