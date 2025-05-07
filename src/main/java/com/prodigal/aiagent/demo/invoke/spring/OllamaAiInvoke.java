@@ -5,23 +5,23 @@ import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
  * @author Lang
  * @project prodigal-ai-agent
  * @Version: 1.0
- * @description spring ai 测试
- * @since 2025/4/30
+ * @description ollama大模型测试
+ * @since 2025/5/7
  */
 //@Component //取消注释，可在 Spring Boot 项目启动时执行
-public class SpringAiInvoke implements CommandLineRunner {
+public class OllamaAiInvoke implements CommandLineRunner {
     @Resource
-    private ChatModel dashscopeChatModel;
+    private ChatModel ollamaChatModel;
+
     @Override
     public void run(String... args) throws Exception {
-        AssistantMessage output = dashscopeChatModel.call(new Prompt("Hello World! Welcome to Prodigal AI Agent! I`m Lang"))
+        AssistantMessage output = ollamaChatModel.call(new Prompt("hello! 我是lang,nice to meet you!"))
                 .getResult().getOutput();
         System.out.println(output.getText());
     }
