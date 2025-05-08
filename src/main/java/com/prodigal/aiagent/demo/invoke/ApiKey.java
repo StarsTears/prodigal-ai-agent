@@ -8,5 +8,5 @@ package com.prodigal.aiagent.demo.invoke;
  * @since 2025/4/30
  */
 public class ApiKey {
-    public static final String API_KEY = "YOUR  API KEY";
+    public static final String API_KEY = "YOUR API KEY";
 }
