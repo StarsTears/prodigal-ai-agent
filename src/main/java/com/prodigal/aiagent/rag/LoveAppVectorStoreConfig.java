@@ -24,7 +24,9 @@ public class LoveAppVectorStoreConfig {
 
     @Bean
     VectorStore loveAppVectorStore(EmbeddingModel dashscopeEmbeddingModel) {
-        SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(dashscopeEmbeddingModel).build();
+        SimpleVectorStore simpleVectorStore = SimpleVectorStore
+                                                .builder(dashscopeEmbeddingModel)//大语言模型
+                                                .build();
         //加载文档
         List<Document> documents = loveAppDocumentLoader.loadMarkdown();
         simpleVectorStore.add(documents);

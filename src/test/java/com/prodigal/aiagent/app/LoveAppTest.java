@@ -37,7 +37,7 @@ class LoveAppTest {
     @Test
     void doWithRag() {
         String chatId = UUID.fastUUID().toString();
-        String message = "我最近和女朋友吵架了，该怎么解决？";
+        String message = "怎样知道自己是否喜欢上一个人？";
         String answer = loveApp.doWithRag(message, chatId);
         Assertions.assertNotNull(answer);
     }
