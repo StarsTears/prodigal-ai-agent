@@ -16,13 +16,13 @@ class LoveAppTest {
     void testChat() {
         String chatId = UUID.fastUUID().toString();
         //第一轮
-        String content = loveApp.doChat("你好！我是lang", chatId);
+        String content = loveApp.doChat("你好！我是 Itlang", chatId);
         Assertions.assertNotNull(content);
         //第二轮
-        content = loveApp.doChat("我想让我另一半更爱我，该如何做？", chatId);
+        content = loveApp.doChat("我想让我的另一半（小孩儿）更爱我，该如何做？", chatId);
         Assertions.assertNotNull(content);
         //第三轮
-        content = loveApp.doChat("请问我叫什么名字?", chatId);
+        content = loveApp.doChat("我是谁？我的另一半分别叫什么来着?刚和你说过，帮我回忆一下", chatId);
         Assertions.assertNotNull(content);
     }
 
@@ -32,5 +32,13 @@ class LoveAppTest {
         //第一轮
         LoveApp.LoveReport loveReport = loveApp.doChatWithReport("你好！我是lang！我想让我的女朋友每天都开开心心的，但是不知道怎么做?", chatId);
         Assertions.assertNotNull(loveReport);
+    }
+
+    @Test
+    void doWithRag() {
+        String chatId = UUID.fastUUID().toString();
+        String message = "我最近和女朋友吵架了，该怎么解决？";
+        String answer = loveApp.doWithRag(message, chatId);
+        Assertions.assertNotNull(answer);
     }
 }
