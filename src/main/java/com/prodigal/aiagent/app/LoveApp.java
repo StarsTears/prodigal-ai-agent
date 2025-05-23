@@ -5,6 +5,8 @@ import com.prodigal.aiagent.advisor.MyLoggerAdvisor;
 import com.prodigal.aiagent.advisor.ReReadingAdvisor;
 import com.prodigal.aiagent.chatmemory.FileBasedChatMemory;
 import com.prodigal.aiagent.chatmemory.MySQLChatMemory;
+import com.prodigal.aiagent.rag.LoveAppRagCustomAdvisorFactory;
+import com.prodigal.aiagent.rag.QueryRewriter;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
@@ -137,8 +139,11 @@ public class LoveApp {
     private VectorStore loveAppVectorStore;
     @Resource
     private Advisor loveAppRagAdvisor;
-
+    @Resource
+    private QueryRewriter queryRewriter;
     public String doWithRag(String message, String chatId) {
+        //重写查询
+       String rewriterMessage = queryRewriter.doQueryRewriter(message);
         QuestionAnswerAdvisor questionAnswerAdvisor = QuestionAnswerAdvisor.builder(loveAppVectorStore)
                 .searchRequest(SearchRequest.builder().similarityThreshold(0.7d).topK(3).build())
                 .build();
@@ -152,8 +157,9 @@ public class LoveApp {
                 //应用知识库回答
 //                .advisors(questionAnswerAdvisor)
                 //应用增强检索服务-云知识库
-                .advisors(loveAppRagAdvisor)
-                .user(message)
+//                .advisors(loveAppRagAdvisor)
+                .advisors(LoveAppRagCustomAdvisorFactory.createLoveAppRagCustomAdvisor(loveAppVectorStore, "已婚"))
+                .user(rewriterMessage)
                 .call()
                 .chatResponse();
         String content = chatResponse.getResult().getOutput().getText();
