@@ -18,7 +18,7 @@ public class FileOperationTool {
     @Tool(description = "write content to fileName")
     public String writeFile(@ToolParam(description = "file name") String fileName,
                             @ToolParam(description = "content write to a file") String content){
-        String filePath = FILE_DIR +"/"+fileName+System.currentTimeMillis()+".txt";
+        String filePath = FILE_DIR +"/"+fileName;
         try {
             FileUtil.mkdir(FILE_DIR);
             FileUtil.writeUtf8String(content, filePath);

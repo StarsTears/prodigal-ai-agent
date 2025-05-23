@@ -17,9 +17,9 @@ import java.io.File;
  */
 public class ResourceDownloadTool {
     final String fileDir = FileConstant.SAVE_FILE_DIR+"/download";
-    @Tool(description = "下载资源")
-    public String downloadResource(@ToolParam(description = "资源链接") String url,
-                                   @ToolParam(description = "保存文件名")String fileName) {
+    @Tool(description = "Download resource from a given URL")
+    public String downloadResource(@ToolParam(description = "URL of the resource to download") String url,
+                                   @ToolParam(description = "Name of the file to save the downloaded resource")String fileName) {
         String filePath = fileDir+"/"+fileName;
         try {
             FileUtil.mkdir(fileDir);//创建目录

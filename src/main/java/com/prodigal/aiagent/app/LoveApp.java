@@ -17,6 +17,7 @@ import org.springframework.ai.chat.client.advisor.api.Advisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.tool.ToolCallback;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,6 +165,24 @@ public class LoveApp {
                 .chatResponse();
         String content = chatResponse.getResult().getOutput().getText();
         log.info("doWithRag:{}", content);
+        return content;
+    }
+
+    @Resource
+    private ToolCallback[] allTools;
+    public String doWithTool(String message, String chatId) {
+        ChatResponse chatResponse = chatClient.prompt()
+                .user(message)
+                .advisors(spec -> spec.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId) //对话id
+                        .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10) //关联会话的条数
+                )
+                //开启日志
+                .advisors(new MyLoggerAdvisor())
+                .tools(allTools)
+                .call()
+                .chatResponse();
+        String content = chatResponse.getResult().getOutput().getText();
+        log.info("doWithTool:{}", content);
         return content;
     }
 }

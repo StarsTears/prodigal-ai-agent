@@ -22,7 +22,7 @@ class PDFGenerationToolTest {
                 "主人何为言少钱，径须沽取对君酌。" +
                 "五花马，千金裘，呼儿将出换美酒，与尔同销万古愁。";
         String text= "内容：text";
-        String result = tool.generatePDF(content, "将进酒");
+        String result = tool.generatePDF(content, "将进酒.pdf");
         assertNotNull(result);
     }
 }

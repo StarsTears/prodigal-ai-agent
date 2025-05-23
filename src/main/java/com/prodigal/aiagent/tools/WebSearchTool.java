@@ -44,7 +44,11 @@ public class WebSearchTool {
             JSONArray organicResults = jsonObject.getJSONArray("organic_results");
             if (organicResults == null){
                 organicResults = jsonObject.getJSONArray("people_also_search_for");
+                if (organicResults == null){
+                    organicResults = jsonObject.getJSONArray("knowledge_graph");
+                }
             }
+
             List<Object> objects = organicResults.subList(0, 5);
             // 拼接搜索结果为字符串
             String result = objects.stream().map(obj -> {

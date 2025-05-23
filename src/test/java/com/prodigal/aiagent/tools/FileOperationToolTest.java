@@ -10,7 +10,7 @@ class FileOperationToolTest {
     @Test
     void writeFile() {
         FileOperationTool fileOperationTool = new FileOperationTool();
-        String result = fileOperationTool.writeFile("将进酒", "君不见，黄河之水天上来，奔流到海不复回；君不见，高堂明镜悲白发，朝如青丝暮成雪！");
+        String result = fileOperationTool.writeFile("将进酒.txt", "君不见，黄河之水天上来，奔流到海不复回；君不见，高堂明镜悲白发，朝如青丝暮成雪！");
         Assertions.assertNotNull(result);
     }
 

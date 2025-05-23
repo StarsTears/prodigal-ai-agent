@@ -23,10 +23,10 @@ import org.springframework.ai.tool.annotation.ToolParam;
 public class PDFGenerationTool {
     final String fileDir = FileConstant.SAVE_FILE_DIR + "/pdf";
 
-    @Tool(description = "生成PDF文件")
-    public String generatePDF(@ToolParam(description = "PDF文件内容") String content,
-                              @ToolParam(description = "PDF文件名") String fileName) {
-        String filePath = fileDir + "/" + fileName + ".pdf";
+    @Tool(description = "Generate a PDF file with given content")
+    public String generatePDF(@ToolParam(description = "content to be included in the PDF") String content,
+                              @ToolParam(description = "Name of the file to save the generated PDF") String fileName) {
+        String filePath = fileDir + "/" + fileName;
         try {
             FileUtil.mkdir(fileDir);//创建目录
             try (
