@@ -37,6 +37,10 @@ mybatis-plus:
       logic-delete-field: deleted
       logic-delete-value: 1
       logic-not-delete-value: 0
+# searchApi
+search-api:
+  api-key: YOUR API Key
+
 # springdoc-openapi
 springdoc:
   swagger-u1:

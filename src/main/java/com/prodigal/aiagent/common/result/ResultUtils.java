@@ -1,4 +1,4 @@
-package com.prodigal.aiagent.common;
+package com.prodigal.aiagent.common.result;
 
 
 import com.prodigal.aiagent.exception.ErrorCode;

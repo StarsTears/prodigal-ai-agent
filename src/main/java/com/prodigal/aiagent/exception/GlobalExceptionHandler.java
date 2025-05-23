@@ -1,8 +1,8 @@
 package com.prodigal.aiagent.exception;
 
 
-import com.prodigal.aiagent.common.BaseResult;
-import com.prodigal.aiagent.common.ResultUtils;
+import com.prodigal.aiagent.common.result.BaseResult;
+import com.prodigal.aiagent.common.result.ResultUtils;
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
